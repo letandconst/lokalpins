@@ -26,6 +26,7 @@ const PinListItem = ({ pin, onClick }: PinListItemProps) => {
 								<Typography
 									variant='body2'
 									color='text.secondary'
+									component='span'
 								>
 									{pin.description}
 								</Typography>
@@ -33,6 +34,7 @@ const PinListItem = ({ pin, onClick }: PinListItemProps) => {
 									variant='caption'
 									color='text.secondary'
 									display='block'
+									component='span'
 								>
 									{address}
 								</Typography>
@@ -44,7 +46,7 @@ const PinListItem = ({ pin, onClick }: PinListItemProps) => {
 						src={pin.images?.[0] || '/no-image.jpg'}
 						alt={pin.title}
 						sx={{
-							width: 100,
+							minWidth: 100,
 							height: 80,
 							objectFit: 'cover',
 							borderRadius: 1,

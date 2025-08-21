@@ -93,7 +93,12 @@ export default function Map({ placingMode, onLocationSelected, showSearch }: Map
 						},
 					}}
 				>
-					<Box sx={{ width: '400px', overflow: 'scroll' }}>
+					<Box
+						sx={{
+							width: '400px',
+							overflowY: selectedPin ? 'hidden' : filteredPins.length > 7 ? 'scroll' : 'hidden',
+						}}
+					>
 						{selectedPin ? (
 							<SidePanel
 								pin={selectedPin}
@@ -113,7 +118,11 @@ export default function Map({ placingMode, onLocationSelected, showSearch }: Map
 										<Close />
 									</IconButton>
 								</Box>
-								<List>
+								<List
+									sx={{
+										paddingBottom: '30px',
+									}}
+								>
 									{filteredPins.map((p, index) => (
 										<React.Fragment key={index}>
 											<PinListItem
