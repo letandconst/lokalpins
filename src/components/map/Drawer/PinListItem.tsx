@@ -51,6 +51,7 @@ const PinListItem = ({ pin, onClick }: PinListItemProps) => {
 							objectFit: 'cover',
 							borderRadius: 1,
 							ml: 2,
+							maxWidth: 100,
 						}}
 					/>
 				</ListItemButton>
