@@ -19,7 +19,7 @@ LokalPins is a **community-driven map of the Philippines** where users can pin a
 
 ### 1. Interactive Map
 
-- Centered on the current location of user by default.
+- Centered on the current location of user by default. ( deferred)
 - Zoom, pan, and cluster pins to avoid clutter.
 - Clicking a pin opens a popup card with:
   - Title
@@ -63,7 +63,7 @@ Users can add a pin through a form with:
   - Description
   - Category
   - Author (e.g., “posted by Juan”)
-- ❤️ Heart button with count
+  - ❤️ Heart button with count
   - Clicking ❤️ stores a vote in Firebase
   - Each user can like a pin **only once**
 
