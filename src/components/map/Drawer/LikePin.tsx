@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react';
 import { IconButton, Typography, Box } from '@mui/material';
 import { Favorite, FavoriteBorder } from '@mui/icons-material';
 import { ref, onValue, runTransaction, set, remove } from 'firebase/database';
-import { db } from '../../lib/firebase';
-import type { Pin } from '../../types/types';
-import { useAuth } from '../../hooks/useAuth';
+import { db } from '../../../lib/firebase';
+import type { Pin } from '../../../types/types';
+import { useAuth } from '../../../hooks/useAuth';
 
 const LikePin = ({ pin }: { pin: Pin }) => {
 	const { user } = useAuth();

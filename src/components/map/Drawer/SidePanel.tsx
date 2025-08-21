@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardMedia, Stack, Typography, IconButton, Button, Box } from '@mui/material';
 import { Close, ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
-import type { Pin } from '../../types/types';
+import type { Pin } from '../../../types/types';
 import LikePin from './LikePin';
+import { useAddress } from '../../../hooks/useAddress';
 
 type SidePanelProps = {
 	pin: Pin;
@@ -12,35 +13,23 @@ type SidePanelProps = {
 export function SidePanel({ pin, onClose }: SidePanelProps) {
 	const [carouselOpen, setCarouselOpen] = useState(false);
 	const [sliderIndex, setSliderIndex] = useState(0);
-	const [address, setAddress] = useState<string>('Loading...');
 
-	// Fetch reverse geocode
-	useEffect(() => {
-		const fetchAddress = async () => {
-			try {
-				const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${pin.lat}&lon=${pin.lng}`);
-				const data = await res.json();
-				setAddress(data.display_name || `${pin.lat}, ${pin.lng}`);
-			} catch {
-				setAddress(`${pin.lat}, ${pin.lng}`);
-			}
-		};
-		fetchAddress();
-	}, [pin]);
+	const address = useAddress(pin.lat, pin.lng);
 
 	return (
 		<>
 			<Card
 				sx={{
-					width: 360,
+					width: '100%',
 					height: '100%',
-					position: 'absolute',
+					position: 'relative',
 					left: 0,
 					top: 0,
 					zIndex: 1000,
 					boxShadow: 3,
 					display: 'flex',
 					flexDirection: 'column',
+					borderRadius: '0',
 				}}
 			>
 				<div style={{ position: 'relative' }}>
@@ -53,6 +42,7 @@ export function SidePanel({ pin, onClose }: SidePanelProps) {
 								width: '100%',
 								height: '100%',
 								objectFit: 'cover',
+								borderRadius: '0',
 							}}
 						/>
 						{/* Gradient overlay */}
@@ -143,10 +133,10 @@ export function SidePanel({ pin, onClose }: SidePanelProps) {
 				<div
 					style={{
 						position: 'absolute',
-						left: 360,
+						left: '100%',
 						top: 0,
 						height: '100%',
-						width: 'calc(100% - 360px)',
+						width: 'calc(100vw - 400px)',
 						background: 'rgba(0,0,0,0.9)',
 						zIndex: 2000,
 						display: 'flex',
@@ -163,8 +153,12 @@ export function SidePanel({ pin, onClose }: SidePanelProps) {
 					<Stack
 						direction='row'
 						justifyContent='space-between'
-						width='80%'
+						width='300px'
 						mt={2}
+						sx={{
+							position: 'absolute',
+							bottom: '24px',
+						}}
 					>
 						<IconButton
 							onClick={() => setSliderIndex((i) => Math.max(0, i - 1))}

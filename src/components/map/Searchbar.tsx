@@ -47,11 +47,10 @@ export function SearchBar({ onSelect }: SearchBarProps) {
 			sx={{
 				position: 'absolute',
 				top: 16,
-				left: '50%',
-				transform: 'translateX(-50%)',
+				left: '3%',
 				zIndex: 1100,
 				p: 1,
-				width: 400,
+				width: 500,
 				borderRadius: 2,
 				boxShadow: 3,
 				bgcolor: 'background.paper',
