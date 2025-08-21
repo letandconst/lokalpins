@@ -14,3 +14,18 @@ export type Coords = {
 	lat: number;
 	lng: number;
 };
+
+export type LeafletMapProps = {
+	pins: Pin[];
+	center: [number, number];
+	placingMode: boolean;
+	onLocationSelected: (coords: Coords) => void;
+	onPinClick: (pin: Pin) => void;
+	selectedPin: Pin | null;
+};
+
+export type MapProps = {
+	placingMode: boolean;
+	onLocationSelected: (coords: Coords) => void;
+	showSearch: boolean;
+};

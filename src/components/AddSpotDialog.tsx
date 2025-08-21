@@ -4,10 +4,6 @@ import { db } from '../lib/firebase';
 import { ref as dbRef, push, set, serverTimestamp } from 'firebase/database';
 import { type User } from 'firebase/auth';
 
-type Coords = { lat: number; lng: number };
-const categories = ['Food Trip', 'Tambayan', 'Pasyalan', 'Adventure', 'Hidden Gem'] as const;
-type Category = (typeof categories)[number];
-
 interface AddPinDialogProps {
 	open: boolean;
 	onClose: () => void;
@@ -15,6 +11,10 @@ interface AddPinDialogProps {
 	user: User;
 	onSuccess: () => void;
 }
+
+type Coords = { lat: number; lng: number };
+type Category = (typeof categories)[number];
+const categories = ['Food Trip', 'Tambayan', 'Pasyalan', 'Adventure', 'Hidden Gem'] as const;
 
 const AddPinDialog = ({ open, onClose, coords, user, onSuccess }: AddPinDialogProps) => {
 	const [form, setForm] = useState({
