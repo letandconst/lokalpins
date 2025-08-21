@@ -41,9 +41,9 @@ const ProfilePage = () => {
 			const pinsArr: Pin[] = Object.entries(data)
 				.map(([id, val]) => ({
 					id,
-					...(val as Omit<Pin, 'id'> & { author: { uid: string } }),
+					...(val as Omit<Pin, 'id'> & { author?: { uid?: string } }),
 				}))
-				.filter((pin) => pin.author.uid === user.uid);
+				.filter((pin) => pin.author?.uid === user.uid && typeof pin.lat === 'number' && typeof pin.lng === 'number');
 
 			setPins(pinsArr);
 		});

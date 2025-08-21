@@ -29,10 +29,11 @@ export default function Map({ placingMode, onLocationSelected, showSearch }: Map
 		const unsub = onValue(r, (snap) => {
 			const val = snap.val() as Record<string, Omit<Pin, 'id'>> | null;
 			if (!val) return setPins([]);
+
 			setPins(Object.entries(val).map(([id, data]) => ({ id, ...data })));
 		});
 		return () => unsub();
-	}, []);
+	}, [pins]);
 
 	return (
 		<div style={{ height: '100%', position: 'relative' }}>

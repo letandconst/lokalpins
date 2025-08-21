@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Card, CardContent, CardMedia, Stack, Typography, IconButton, Button } from '@mui/material';
+import { Card, CardContent, CardMedia, Stack, Typography, IconButton, Button, Box } from '@mui/material';
 import { Close, ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import type { Pin } from '../../types/types';
+import LikePin from './LikePin';
 
 type SidePanelProps = {
 	pin: Pin;
@@ -43,12 +44,26 @@ export function SidePanel({ pin, onClose }: SidePanelProps) {
 				}}
 			>
 				<div style={{ position: 'relative' }}>
-					<CardMedia
-						component='img'
-						image={pin.images?.[0] || '/no-image.jpg'}
-						alt={pin.title}
-						sx={{ width: '100%', height: 200, objectFit: 'cover' }}
-					/>
+					<Box sx={{ position: 'relative', width: '100%', height: 200 }}>
+						<CardMedia
+							component='img'
+							image={pin.images?.[0] || '/no-image.jpg'}
+							alt={pin.title}
+							sx={{
+								width: '100%',
+								height: '100%',
+								objectFit: 'cover',
+							}}
+						/>
+						{/* Gradient overlay */}
+						<Box
+							sx={{
+								position: 'absolute',
+								inset: 0,
+								background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6))',
+							}}
+						/>
+					</Box>
 					{pin.images && pin.images.length > 1 && (
 						<Button
 							variant='contained'
@@ -65,6 +80,26 @@ export function SidePanel({ pin, onClose }: SidePanelProps) {
 							See All Photos
 						</Button>
 					)}
+
+					<IconButton
+						size='small'
+						onClick={onClose}
+						sx={{
+							position: 'absolute',
+							right: '16px',
+							top: '16px',
+							backgroundColor: '#000',
+							color: '#fff',
+							transition: 'background-color 0.2s ease, color: 0.2s ease',
+
+							'&:hover': {
+								backgroundColor: '#fff',
+								color: '#000',
+							},
+						}}
+					>
+						<Close />
+					</IconButton>
 				</div>
 
 				<CardContent sx={{ flex: 1, overflowY: 'auto' }}>
@@ -75,12 +110,8 @@ export function SidePanel({ pin, onClose }: SidePanelProps) {
 							alignItems='center'
 						>
 							<Typography variant='h6'>{pin.title}</Typography>
-							<IconButton
-								size='small'
-								onClick={onClose}
-							>
-								<Close />
-							</IconButton>
+
+							<LikePin pin={pin} />
 						</Stack>
 						<Typography variant='body2'>Description: {pin.description}</Typography>
 						<Typography

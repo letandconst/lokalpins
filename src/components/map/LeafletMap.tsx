@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import type { Pin, Coords } from '../../types/types';
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import 'leaflet/dist/leaflet.css';
 
 export function ClickToPlace({ placingMode, onSelect }: { placingMode: boolean; onSelect: (coords: Coords) => void }) {
@@ -13,9 +13,15 @@ export function ClickToPlace({ placingMode, onSelect }: { placingMode: boolean; 
 	return null;
 }
 
-export function MapUpdater({ center }: { center: [number, number] }) {
+export function MapUpdater({ center, placingMode }: { center: [number, number]; placingMode: boolean }) {
 	const map = useMap();
-	map.setView(center, map.getZoom());
+
+	useEffect(() => {
+		if (placingMode && center) {
+			map.setView(center, map.getZoom());
+		}
+	}, [placingMode, center, map]);
+
 	return null;
 }
 
@@ -44,7 +50,10 @@ export function LeafletMap({ pins, center, placingMode, onLocationSelected, onPi
 				placingMode={placingMode}
 				onSelect={onLocationSelected}
 			/>
-			<MapUpdater center={center} />
+			<MapUpdater
+				center={center}
+				placingMode={placingMode}
+			/>
 
 			{pins.map((p) => (
 				<Marker
