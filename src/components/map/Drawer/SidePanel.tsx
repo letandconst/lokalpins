@@ -4,6 +4,8 @@ import { Close, ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
 import type { Pin } from '../../../types/types';
 import LikePin from './LikePin';
 import { useAddress } from '../../../hooks/useAddress';
+import { Reviews } from './Reviews';
+import { useAuth } from '../../../hooks/useAuth';
 
 type SidePanelProps = {
 	pin: Pin;
@@ -13,6 +15,8 @@ type SidePanelProps = {
 export function SidePanel({ pin, onClose }: SidePanelProps) {
 	const [carouselOpen, setCarouselOpen] = useState(false);
 	const [sliderIndex, setSliderIndex] = useState(0);
+
+	const { user } = useAuth();
 
 	const address = useAddress(pin.lat, pin.lng);
 
@@ -125,6 +129,11 @@ export function SidePanel({ pin, onClose }: SidePanelProps) {
 							</Typography>
 						)}
 					</Stack>
+
+					<Reviews
+						pinId={pin.id}
+						user={user}
+					/>
 				</CardContent>
 			</Card>
 
