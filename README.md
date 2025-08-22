@@ -69,6 +69,16 @@ Users can add a pin through a form with:
 
 ---
 
+### 5. Reviews
+
+- Users can write reviews for any pins
+- Reviews are automatically aggregated and displayed on the pin detail page
+- Users can also write reviews for their own pins
+
+### 6. User Profile
+
+- Users can view their profile and see their pins / likes
+
 ## Tech Stack
 
 - **Frontend:** React.js / TypeScript / Vite / Material UI
@@ -80,7 +90,9 @@ Users can add a pin through a form with:
 
 ## Screenshots
 
-- To be added
+- ![alt text](public/lokalpin-img-1.jpg)
+- ![alt text](public/lokalpin-img-2.jpg)
+- ![alt text](public/lokalpin-img-3.jpg)
 
 ## Getting Started
 
