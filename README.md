@@ -91,7 +91,7 @@ Users can add a pin through a form with:
 ## Screenshots
 
 - ![alt text](public/lokalpin-img-1.jpg)
-- ![alt text](public/lokalpin-img-2.jpg)
+- ![alt text](public/lokalpin-img-2.png)
 - ![alt text](public/lokalpin-img-3.jpg)
 
 ## Getting Started
